@@ -2,14 +2,14 @@
 
 var alt = require('../alt');
 
-class MetricActions {
+class MetricListActions {
     constructor() {
         this.generateActions(
-            'updateItemData',
+            'updateItemList',
             'newItemData'
         );
     }
 }
 
 
-alt.createActions(MetricActions, exports);
+alt.createActions(MetricListActions, exports);

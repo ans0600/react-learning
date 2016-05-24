@@ -15,12 +15,16 @@ export default class MetricItem extends React.Component {
                 <Row><p>MetricItem</p></Row>
                 <Row>
                     <Col xs={12} md={8}>
-                        <MetricDisplay></MetricDisplay>
+                        <MetricDisplay
+                            data={this.props.data}
+                        ></MetricDisplay>
                     </Col>
                 </Row>
                 <Row>
                     <Col xs={12} md={8}>
-                        <MetricControl></MetricControl>
+                        <MetricControl
+                            data={this.props.data}
+                        ></MetricControl>
                     </Col>
                 </Row>
             </Grid>

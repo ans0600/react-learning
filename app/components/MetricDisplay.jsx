@@ -1,18 +1,21 @@
 import React from 'react';
-var MetricItemStore = require('../stores/MetricItemStore');
+var MetricListStore = require('../stores/MetricListStore');
 
 import {Grid, Row, Col, Panel} from 'react-bootstrap'
 
 export default class MetricDisplay extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = this.props.data;
+        if (!Array.isArray(this.state.data)) {
+            this.state.data = [];
+        }
     }
     componentDidMount() {
-        MetricItemStore.listen(this._onMetricDataChange.bind(this));
+        MetricListStore.listen(this._onMetricDataChange.bind(this));
     }
     componentWillUnmount() {
-        MetricItemStore.unlisten(this._onMetricDataChange.bind(this));
+        MetricListStore.unlisten(this._onMetricDataChange.bind(this));
     }
     render() {
         return <Panel>
@@ -21,8 +24,8 @@ export default class MetricDisplay extends React.Component {
             <p>Latest Value: {this.state.latest}</p>
         </Panel>
     }
-    _onMetricDataChange(metricItemStore) {
-        console.log('In Metric Display', metricItemStore.getItemData());
-        this.setState(metricItemStore.getItemData());
+    _onMetricDataChange(metricListStore) {
+        console.log('In Metric Display', metricListStore.getItemDataByKey(this.state.key));
+        this.setState(metricListStore.getItemDataByKey(this.state.key));
     }
 }

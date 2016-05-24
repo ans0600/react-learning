@@ -1,5 +1,5 @@
 import React from 'react';
-import MetricItem from './MetricItem.jsx';
+import MetricItemList from './MetricItemList.jsx';
 var WebAPIUtils = require('../utils/WebAPIUtils');
 
 export default class App extends React.Component {
@@ -7,9 +7,10 @@ export default class App extends React.Component {
         super(props);
     }
     componentDidMount() {
-        WebAPIUtils.loadTestItem();
+        //WebAPIUtils.loadTestItem();
+        WebAPIUtils.loadTestItemList();
     }
     render() {
-        return < MetricItem />;
+        return < MetricItemList />;
     }
 }

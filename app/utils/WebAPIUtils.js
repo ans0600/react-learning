@@ -1,17 +1,22 @@
 'use strict';
 
-//var shop = require('../../../common/api/shop');
-var MetricActions = require('../actions/MetricActions');
+var MetricListActions = require('../actions/MetricListActions');
 
 module.exports = {
-    
-    loadTestItem: function () {
-        MetricActions.updateItemData({
-            data: [0,1,2],
-            latest: 2
-        });
+
+    loadTestItemList: function () {
+        MetricListActions.updateItemList([{
+            data: [0, 1, 2],
+            latest: 2,
+            key: 0
+        },
+            {
+                data: [3, 4, 5],
+                latest: 5,
+                key: 1
+            }]);
     },
-    
+
     getAllProducts: function () {
         // shop.getProducts(function (products) {
         //     ActionCreators.receiveProducts(products);
