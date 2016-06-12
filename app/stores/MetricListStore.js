@@ -1,6 +1,5 @@
 'use strict';
 
-var alt = require('../alt');
 var MetricListActions = require('../actions/MetricListActions');
 
 class MetricListStore {
@@ -31,5 +30,3 @@ class MetricListStore {
     }
 
 }
-
-module.exports = alt.createStore(MetricListStore, 'MetricListStore');
