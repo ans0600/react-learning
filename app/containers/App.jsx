@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import VisibleMetricItemList from '../containers/VisibleMetricItemList';
 
 import { connect } from 'react-redux'
-import { updateItemList, testUpdateItemList } from '../actions'
+import { fetchItemList, fetchThingConfig } from '../actions'
 
 
 class App extends Component {
@@ -12,8 +12,8 @@ class App extends Component {
 
   componentDidMount() {
     const {dispatch} = this.props;
-    //dispatch(updateItemList());
-    dispatch(testUpdateItemList());
+    dispatch(fetchThingConfig());
+    dispatch(fetchItemList());
   }
 
   render() {

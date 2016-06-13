@@ -1,33 +1,38 @@
 import React from 'react';
 import MetricDisplay from './MetricDisplay.jsx';
-import MetricControl from './MetricControl.jsx';
+import MetricControl from '../containers/MetricControl.jsx';
 
 import {Grid, Row, Col, Panel} from 'react-bootstrap'
 
 export default class MetricItem extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props);
+  }
 
-    render() {
-        return <Panel>
-            <Grid>
-                <Row><p>MetricItem</p></Row>
-                <Row>
-                    <Col xs={12} md={8}>
-                        <MetricDisplay
-                            data={this.props.data}
-                        ></MetricDisplay>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={12} md={8}>
-                        <MetricControl
-                            data={this.props.data}
-                        ></MetricControl>
-                    </Col>
-                </Row>
-            </Grid>
-        </Panel>
-    }
+  componentDidMount() {
+  }
+
+  render() {
+    return <Panel ref={(ref) => {this.metricItemPanel = ref}}>
+      <Grid>
+        <Row><p>MetricItem: {this.props.itemKey}</p></Row>
+        <Row>
+          <Col>
+            <MetricDisplay
+              ref={(ref) => {this.metricDisplay = ref}}
+              data={this.props.data}
+            ></MetricDisplay>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <MetricControl
+              data={this.props.data}
+              itemConfig={this.props.itemConfig}
+            ></MetricControl>
+          </Col>
+        </Row>
+      </Grid>
+    </Panel>
+  }
 }

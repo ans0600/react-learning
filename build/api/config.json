@@ -1,0 +1,28 @@
+{
+  "thingId": "0cd2320e-598b-897f-e734-b62b4815e924",
+  "data": {
+    "sw1": {
+      "name": "Switch1",
+      "itemKey": "sw1",
+      "readOnly": false,
+      "type": "switch"
+    },
+    "temp1": {
+      "name": "Temp1",
+      "itemKey": "temp1",
+      "type": "number",
+      "readOnly": false
+    },
+    "dimmer1": {
+      "name": "Dimmer1",
+      "itemKey": "dimmer1",
+      "readOnly": false,
+      "type": "dimmer",
+      "min": 0,
+      "max": 100
+    }
+  },
+  "thingProperty": {
+    "deviceSecret": "5396759cce11dacb570adb314340fd0a"
+  }
+}

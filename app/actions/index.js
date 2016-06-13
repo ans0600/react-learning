@@ -10,31 +10,28 @@ function receiveItemListData(data) {
     }
 }
 
-
-function fetchMetricList() {
-    return dispatch => {
-        dispatch(receiveItemListData())
-    };
-}
-
-export function updateItemList() {
-    return (dispatch, getState) => {
-        return dispatch(fetchMetricList());
+function receiveThingConfig(data) {
+    return {
+        type: 'RECEIVE_THING_CONFIG',
+        data: data
     }
 }
 
-export const testUpdateItemList = () => {
-    return receiveItemListData([{
-        data: [0, 1, 2],
-        latest: 2,
-        key: 0
-    },
-        {
-            data: [3, 4, 5],
-            latest: 5,
-            key: 1
-        }])
-};
+export function fetchItemList(deviceID) {
+    return (dispatch, getState) => {
+        return fetch(`/api/test.json`)
+          .then(response => response.json())
+          .then(json=> dispatch(receiveItemListData(json)))
+    }
+}
+
+export function fetchThingConfig(deviceID) {
+    return (dispatch, getState) => {
+        return fetch(`/api/config.json`)
+          .then(response => response.json())
+          .then(json=> dispatch(receiveThingConfig(json)))
+    }
+}
 
 export const updateMetric = (index, newValue) =>  {
     return  {
@@ -43,23 +40,3 @@ export const updateMetric = (index, newValue) =>  {
         newValue: newValue
     };
 };
-
-
-// export const updateItemList = () => {
-//     return {
-//         type: 'UPDATE_ITEM_LIST'
-//     }
-//    
-// };
-
-// class MetricListActions {
-//     constructor() {
-//         this.generateActions(
-//             'updateItemList',
-//             'newItemData'
-//         );
-//     }
-// }
-
-
-// alt.createActions(MetricListActions, exports);

@@ -2,11 +2,10 @@ import { connect } from 'react-redux'
 import MetricItemList from '../components/MetricItemList'
 
 const mapStateToProps = (state) => {
-  //debugger;
   return {
-    itemList: state.metricList || []
+    itemList: state.metricList.data || {},
+    thingConfig: state.thingConfig
   }
-  
 };
 
 const mapDispatchToProps = (dispatch) => {

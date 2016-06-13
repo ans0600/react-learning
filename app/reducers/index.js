@@ -1,17 +1,13 @@
 import {combineReducers} from 'redux'
 
-function metricList(state=[], action) {
-  switch(action.type) {
+
+
+function metricList(state = {}, action) {
+  switch (action.type) {
     case "RECEIVE_ITEM_LIST":
-      return Object.assign([], state, action.data);
+      return Object.assign({}, state, action.data);
     case "UPDATE_METRIC":
-      let currentState = Object.assign([], state);
-    //  debugger;
-    //   currentState.push({
-    //     data: [9, 8, 999],
-    //     latest: 999,
-    //     key: 2
-    //   });
+      let currentState = Object.assign({}, state);
       currentState[action.index].data.push(action.newValue);
       currentState[action.index].latest = action.newValue;
       return currentState;
@@ -20,8 +16,18 @@ function metricList(state=[], action) {
   }
 }
 
+function thingConfig(state = {}, action) {
+  switch (action.type) {
+    case 'RECEIVE_THING_CONFIG':
+      return Object.assign({}, state, action.data);
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
-  metricList
+  metricList,
+  thingConfig
 });
 
 export default rootReducer

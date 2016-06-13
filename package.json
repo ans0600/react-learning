@@ -13,12 +13,17 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
-    "react": "^0.14.7",
-    "react-redux": "^4.1.2",
+    "chart.js": "^1.1.1",
+    "isomorphic-fetch": "^2.1.1",
+    "react": "^0.14.8",
     "react-bootstrap": "^0.29.4",
+    "react-bootstrap-native-slider": "^2.0.0",
+    "react-bootstrap-switch": "^3.4.5",
+    "react-chartjs": "^0.7.3",
     "react-dom": "^0.14.7",
+    "react-redux": "^4.1.2",
     "redux": "^3.1.2",
-    "isomorphic-fetch": "^2.1.1"
+    "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.9.0",
@@ -28,6 +33,8 @@
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-survivejs-kanban": "^0.3.3",
     "css-loader": "^0.23.1",
+    "node-sass": "^3.7.0",
+    "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
