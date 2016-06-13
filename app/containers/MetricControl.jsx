@@ -39,7 +39,7 @@ class MetricControl extends React.Component {
         break;
       case 'dimmer':
         inputNode = <ReactSliderNativeBootstrap
-          handleChange={this._handleSwitchChange.bind(this)}
+          handleChange={this._handleDimmerChange.bind(this)}
           step={1}
           min={0}
           value={this.state.latestData}
@@ -53,7 +53,11 @@ class MetricControl extends React.Component {
     </Panel>
   }
 
-  _handleSwitchChange(event) {
+  _handleSwitchChange(state) {
+    console.log("switch value: ", state);
+  }
+
+  _handleDimmerChange(event) {
     this.setState({ latestData: event.target.value });
     console.log("slider: ", event.target.value);
   }
