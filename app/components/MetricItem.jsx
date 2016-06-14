@@ -1,5 +1,5 @@
 import React from 'react';
-import MetricDisplay from './MetricDisplay.jsx';
+import MetricDisplay from '../containers/MetricDisplay.jsx';
 import MetricControl from '../containers/MetricControl.jsx';
 
 import {Grid, Row, Col, Panel} from 'react-bootstrap'
@@ -29,6 +29,7 @@ export default class MetricItem extends React.Component {
             <MetricControl
               data={this.props.data}
               itemConfig={this.props.itemConfig}
+              itemKey={this.props.itemKey}
             ></MetricControl>
           </Col>
         </Row>

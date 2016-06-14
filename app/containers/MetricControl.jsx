@@ -10,56 +10,42 @@ import {Grid, Row, Col, Panel} from 'react-bootstrap'
 class MetricControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      latestData: 0
-    };
-  }
-
-  componentDidMount() {
-    // todo
-    this.setState({latestData: this._getLatestData()})
-  }
-
-  _getLatestData() {
-    if (Array.isArray(this.props.data.data) && this.props.data.data.length) {
-      let latestData = this.props.data.data[this.props.data.data.length - 1][1];
-      return latestData;
-    }
-    return 0;
   }
 
   render() {
     let inputNode;
-    switch(this.props.itemConfig.type) {
+    switch (this.props.itemConfig.type) {
       case 'switch':
-        inputNode = <Switch onChange={this._handleSwitchChange.bind(this)}></Switch>;
+        inputNode = <Switch onChange={this._handleSwitchChange.bind(this)}
+                            state={this.props.latestData === 0? false: true}></Switch>;
         break;
       case 'number':
-        inputNode = <input type="number" value={this._getLatestData()} disabled="true"/>;
+        inputNode = <input type="number" value={this.props.latestData} disabled="true"/>;
         break;
       case 'dimmer':
         inputNode = <ReactSliderNativeBootstrap
           handleChange={this._handleDimmerChange.bind(this)}
           step={1}
           min={0}
-          value={this.state.latestData}
+          value={this.props.latestData}
           max={100}/>;
         break;
     }
 
     return <Panel>
-      <p>Latest Value: {this._getLatestData()}</p>
+      <p>Latest Value: {this.props.latestData}</p>
       {inputNode}
     </Panel>
   }
 
   _handleSwitchChange(state) {
     console.log("switch value: ", state);
+    this.props.handleControlChange(this.props.itemKey, state ? 1 : 0);
   }
 
   _handleDimmerChange(event) {
-    this.setState({ latestData: event.target.value });
     console.log("slider: ", event.target.value);
+    this.props.handleControlChange(this.props.itemKey, parseInt(event.target.value, 10));
   }
 
   handleInputChange(event) {
@@ -69,9 +55,29 @@ class MetricControl extends React.Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+  let latestData = 0;
+  if (Array.isArray(ownProps.data.data) && ownProps.data.data.length) {
+    latestData = ownProps.data.data[ownProps.data.data.length - 1][1];
+  }
+  return {
+    itemKey: ownProps.itemKey,
+    data: ownProps.data,
+    itemConfig: ownProps.itemConfig,
+    latestData: latestData
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleControlChange: (itemKey, value) => {
+      dispatch(updateMetric(itemKey, value))
+    }
+  };
+};
+
 MetricControl.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired
 };
 
-export default connect()(MetricControl)
+export default connect(mapStateToProps, mapDispatchToProps)(MetricControl)

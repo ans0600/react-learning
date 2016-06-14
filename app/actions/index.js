@@ -33,10 +33,11 @@ export function fetchThingConfig(deviceID) {
     }
 }
 
-export const updateMetric = (index, newValue) =>  {
+export const updateMetric = (itemKey, newValue) =>  {
     return  {
         type: 'UPDATE_METRIC',
-        index: index,
-        newValue: newValue
+        itemKey: itemKey,
+        newValue: newValue,
+        timeStamp: (new Date).getTime() * 1000  //todo
     };
 };

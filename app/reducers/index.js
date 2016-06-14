@@ -8,8 +8,7 @@ function metricList(state = {}, action) {
       return Object.assign({}, state, action.data);
     case "UPDATE_METRIC":
       let currentState = Object.assign({}, state);
-      currentState[action.index].data.push(action.newValue);
-      currentState[action.index].latest = action.newValue;
+      currentState.data[action.itemKey].data.push([action.timeStamp, action.newValue]);
       return currentState;
     default:
       return state;
